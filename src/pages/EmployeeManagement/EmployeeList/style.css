@@ -1,0 +1,31 @@
+.table-container {
+  width: 100%;
+}
+.table-wrapper {
+  border: 1px solid black;
+
+  overflow-x: scroll;
+  align-items: center;
+}
+
+.table-wrapper table {
+  min-width: max-content;
+  border-spacing: 0;
+}
+.table-wrapper th {
+  text-align: center;
+  position: sticky;
+  top: 0px;
+  border: 1px solid black;
+  padding: 7px;
+}
+/* Custom scrollbar */
+.table-wrapper::-webkit-scrollbar {
+  height: 7px;
+  background-color: transparent;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: rgb(180, 180, 180);
+  border-radius: 5px;
+}

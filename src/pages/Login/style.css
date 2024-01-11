@@ -1,0 +1,50 @@
+.Login_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.Login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 300px;
+  padding: 20px;
+  background-color: lightgray;
+}
+
+.Login h2 {
+  font-size: 2em; /* make title bigger */
+  font-weight: bold; /* make title bold */
+  margin-bottom: 20px; /* add some space below the title */
+}
+
+.form-group {
+  margin: 10px;
+  display: flex;
+  justify-content: center; /* center the input fields and button */
+}
+
+.Input {
+  width: 300px;
+  height: 30px;
+  padding: 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 10px; /* add some space below the input fields */
+}
+
+.login-btn {
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 0;
+}
