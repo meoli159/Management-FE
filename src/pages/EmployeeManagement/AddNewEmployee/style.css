@@ -1,0 +1,31 @@
+.form-container {
+  height: 100%;
+}
+
+.employee-form {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid black;  */
+  padding: 10px;
+}
+
+.employee-form label {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.employee-form input {
+  /* background-color: white; */
+  color: gray;
+  border: 1px solid #ccc;
+  background: white;
+  box-shadow: none;
+  padding: 5px;
+}
+.employee-form button {
+  margin-top: 20px;
+  background-color: blue;
+  color: white;
+  padding: 5px;
+}

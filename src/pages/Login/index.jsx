@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './style.css';
 
-function Login() {
+export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -46,5 +46,3 @@ function Login() {
     </div>
   );
 }
-
-export { Login };

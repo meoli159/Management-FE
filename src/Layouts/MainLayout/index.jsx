@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from '../Components/Header';
-import { Footer } from '../Components/Footer';
-import { Sidebar } from '../Components/Sidebar';
-import './MainLayout.css'; // Import your custom CSS file
+import { Header } from '../../Components/Header';
+import { Footer } from '../../Components/Footer';
+import { Sidebar } from '../../Components/Sidebar';
+import './style.css'; // Import your custom CSS file
 
 export const MainLayout = () => {
   return (
