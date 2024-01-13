@@ -30,6 +30,7 @@ export function AddNewEmployee() {
       ...employee,
       [e.target.name]: e.target.value,
     });
+    console.log(employee);
   };
 
   return (

@@ -1,0 +1,10 @@
+.btn-custom {
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 200px;
+  height: 100px;
+}

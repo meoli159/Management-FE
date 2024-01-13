@@ -5,6 +5,22 @@ import { Link } from 'react-router-dom';
 import { sidebarData } from './sidebarData';
 import { HiLogout } from 'react-icons/hi';
 
+export const Sidebar = () => {
+  return (
+    <aside className="sidebar-container">
+      <ul className="sidebar-list-container">
+        {sidebarData.map((item, index) => (
+          <SidebarListItem key={index} item={item} />
+        ))}
+      </ul>
+      <div className="sidebar-list-item logout">
+        <div>{<HiLogout style={{ color: 'white' }} />}</div>
+        <Link to={'/dang-xuat'}>Đăng xuất</Link>
+      </div>
+    </aside>
+  );
+};
+
 const SubMenuList = ({ subItems, showSubMenu }) => (
   <ul className={`submenu-list ${showSubMenu ? 'show' : ''}`}>
     {subItems.map((subItem, index) => (
@@ -28,26 +44,7 @@ const SidebarListItem = ({ item }) => {
         <div>{item.icon}</div>
         <div>{item.title}</div>
       </div>
-      {/* {console.log(item)} */}
       <SubMenuList subItems={item.subItems} showSubMenu={showSubMenu} />
     </li>
   );
 };
-
-const Sidebar = () => {
-  return (
-    <aside className="sidebar-container">
-      <ul className="sidebar-list-container">
-        {sidebarData.map((item, index) => (
-          <SidebarListItem key={index} item={item} />
-        ))}
-      </ul>
-      <div className="sidebar-list-item logout">
-        <div>{<HiLogout style={{ color: 'white' }} />}</div>
-        <Link to={'/dang-xuat'}>Đăng xuất</Link>
-      </div>
-    </aside>
-  );
-};
-
-export { Sidebar };

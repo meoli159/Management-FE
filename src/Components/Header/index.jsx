@@ -10,7 +10,6 @@ export const Header = () => {
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand href="/">Khều donate</Navbar.Brand>
-
         <Navbar.Text>
           Signed in as: <a href="">Cyrus</a>
         </Navbar.Text>

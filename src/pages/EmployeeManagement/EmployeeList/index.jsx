@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
+import { ExcelDownloadButton } from '../../../Components/ExcelDownloadButton';
 import { GetUser } from '../../../Apis/userApi';
 import './style.css';
 export function EmployeeList() {
   const [employees, getEmployees] = useState([]);
   useEffect(() => {
-    GetUser().then((r) => console.log(getEmployees(r.data)));
+    GetUser().then((r) => getEmployees(r.data));
   }, []);
+  console.log(employees);
   return (
     <div className="table-container">
-      <h2>Employee Information</h2>
-      <div className="table-wrapper">
-        <table>
+      <ExcelDownloadButton data={employees} filename={'danh-sach-nhan-vien.csv'} />
+      <h2>Danh sách nhân viên</h2>
+      <div className="table-wrapper border border-black">
+        <table className="table table-striped table-bordered">
           <thead>
             <tr>
               <th>ID nhân viên</th>
