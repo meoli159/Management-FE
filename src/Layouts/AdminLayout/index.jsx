@@ -4,18 +4,19 @@ import { Footer } from '../../Components/Footer';
 import { Sidebar } from '../../Components/Sidebar';
 import './style.css'; // Import your custom CSS file
 
-export const MainLayout = () => {
+export const AdminLayout = () => {
   return (
-    <div className="main-layout">
+    <div className="admin-layout-container">
       <Header />
-      <div className="row-wrapper">
-        <div className="sidebar-layout">
-          <Sidebar />
-        </div>
-        <div className="content-layout">
+
+      <div className="main-body-container">
+        <Sidebar />
+
+        <div className="main-content-wrapper">
           <Outlet />
         </div>
       </div>
+
       <Footer />
     </div>
   );

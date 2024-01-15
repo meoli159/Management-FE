@@ -1,0 +1,17 @@
+.add-employee-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-employee-container form {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+}
+
+.add-employee-form button {
+  margin-top: 20px;
+  background-color: blue;
+  color: white;
+  padding: 5px;
+}

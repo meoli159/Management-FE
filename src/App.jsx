@@ -6,7 +6,7 @@ export default function App() {
     <BrowserRouter>
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
-          <Route element={<MainLayout />}>
+          <Route element={<AdminLayout />}>
             <Route path="/" element={<Navigate to="/tong-quan/xem" />} />
             <Route path="tong-quan">
               <Route path="xem" element={<Overview />} />
@@ -15,7 +15,7 @@ export default function App() {
             </Route>
             <Route path="quan-ly-nhan-vien">
               <Route path="danh-sach" element={<EmployeeList />} />
-              <Route path="them-moi" element={<AddNewEmployee />} />
+              <Route path="them-moi" element={<AddEmployee />} />
               <Route path="cap-nhat" element={<UpdateEmployeeInfo />} />
             </Route>
             <Route path="tai-khoan">
@@ -34,14 +34,20 @@ export default function App() {
 }
 
 // Layouts
-const MainLayout = lazy(() => import('./Layouts/MainLayout').then((module) => ({ default: module.MainLayout })));
+const AdminLayout = lazy(() =>
+  import('./Layouts/AdminLayout').then((module) => ({ default: module.AdminLayout }))
+);
 
 // Pages
 const Login = lazy(() => import('./pages/Login').then((module) => ({ default: module.Login })));
-const NotFound = lazy(() => import('./pages/NotFound').then((module) => ({ default: module.NotFound })));
+const NotFound = lazy(() =>
+  import('./pages/NotFound').then((module) => ({ default: module.NotFound }))
+);
 
 // Pages - Overview
-const Overview = lazy(() => import('./pages/Overview').then((module) => ({ default: module.Overview })));
+const Overview = lazy(() =>
+  import('./pages/Overview').then((module) => ({ default: module.Overview }))
+);
 const ReportOverview = lazy(() =>
   import('./pages/ReportOverview').then((module) => ({ default: module.ReportOverview }))
 );
@@ -51,17 +57,25 @@ const StatisticsOverview = lazy(() =>
 
 // Pages - EmployeeManagement
 const EmployeeList = lazy(() =>
-  import('./pages/EmployeeManagement/EmployeeList').then((module) => ({ default: module.EmployeeList }))
+  import('./pages/EmployeeManagement/EmployeeList').then((module) => ({
+    default: module.EmployeeList,
+  }))
 );
-const AddNewEmployee = lazy(() =>
-  import('./pages/EmployeeManagement/AddNewEmployee').then((module) => ({ default: module.AddNewEmployee }))
+const AddEmployee = lazy(() =>
+  import('./pages/EmployeeManagement/AddEmployee').then((module) => ({
+    default: module.AddEmployee,
+  }))
 );
 const UpdateEmployeeInfo = lazy(() =>
-  import('./pages/EmployeeManagement/UpdateEmployeeInfo').then((module) => ({ default: module.UpdateEmployeeInfo }))
+  import('./pages/EmployeeManagement/UpdateEmployeeInfo').then((module) => ({
+    default: module.UpdateEmployeeInfo,
+  }))
 );
 
 // Pages - Admin
-const AccountInfo = lazy(() => import('./pages/Admin/AccountInfo').then((module) => ({ default: module.AccountInfo })));
+const AccountInfo = lazy(() =>
+  import('./pages/Admin/AccountInfo').then((module) => ({ default: module.AccountInfo }))
+);
 const UpdateAccount = lazy(() =>
   import('./pages/Admin/UpdateAccount').then((module) => ({ default: module.UpdateAccount }))
 );

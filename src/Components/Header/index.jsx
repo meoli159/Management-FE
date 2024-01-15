@@ -1,19 +1,19 @@
 /* eslint-disable react/prop-types */
-// import './Navbar.css';
-import { Navbar, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import './style.css';
 
 export const Header = () => {
   // const isAuth = true;
   // const isAdmin = true;
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
-      <Container>
-        <Navbar.Brand href="/">Khều donate</Navbar.Brand>
-        <Navbar.Text>
+    <div className="navbar-wrapper">
+      <nav>
+        <Link to="/">Khều donate</Link>
+        <span>
           Signed in as: <a href="">Cyrus</a>
-        </Navbar.Text>
-      </Container>
-    </Navbar>
+        </span>
+      </nav>
+    </div>
   );
 };

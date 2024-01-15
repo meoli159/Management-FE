@@ -1,19 +1,23 @@
 .sidebar-container {
   display: flex;
   height: 100%;
-  width: 100%;
+  width: 200px;
   background-color: #343a40;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.sidebar-list-container {
+.sidebar-list {
   padding: 0;
   width: 100%;
   height: auto;
 }
 
-.sidebar-container .sidebar-list-item {
+.sidebar-item,
+.sidebar-logout {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
   padding: 10px 5px;
   font-size: 16px;
   color: white;
@@ -21,23 +25,20 @@
   font-weight: bold;
 }
 
-.sidebar-container .sidebar-list-item:hover {
+.sidebar-item div,
+.sidebar-logout div {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  color: white;
+}
+
+.sidebar-item:hover {
   cursor: pointer;
   background-color: #555;
 }
 
-.sidebar-list-container .sidebar-list-item {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-}
-.sidebar-list-container .sidebar-list-item div {
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-}
-
-.submenu-list {
+.submenu {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
@@ -46,41 +47,32 @@
   text-decoration: none; /* remove underline */
   list-style-type: circle; /* remove list decoration */
 }
-.submenu-list li {
+
+.submenu li {
   margin: 10px 0; /* adjust as needed */
 }
 
-.submenu-list.show {
+.submenu.show {
   max-height: 500px;
 }
 
 /* Darker color for non-clicked text */
-.sidebar-list-item,
-.submenu-list a {
+.sidebar-item,
+.submenu a {
   text-decoration: none;
   color: #3b4249; /* adjust as needed */
 }
 
 /* White color for clicked text */
-.sidebar-list-item:active,
-.sidebar-list-item:focus,
-.submenu-list a:active,
-.submenu-list a:focus,
-.submenu-list a:hover {
+.sidebar-item:active,
+.sidebar-item:focus,
+.submenu a:active,
+.submenu a:focus,
+.submenu a:hover {
   color: white;
 }
 
-.sidebar-list-item.logout {
-  display: flex;
-  font-weight: bold;
-}
-.sidebar-list-item.logout div {
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-}
-
-.sidebar-list-item.logout a {
+.sidebar-logout a {
   display: flex;
   text-decoration: none;
   color: red;

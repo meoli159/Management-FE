@@ -8,30 +8,20 @@ import { HiLogout } from 'react-icons/hi';
 export const Sidebar = () => {
   return (
     <aside className="sidebar-container">
-      <ul className="sidebar-list-container">
+      <ul className="sidebar-list">
         {sidebarData.map((item, index) => (
-          <SidebarListItem key={index} item={item} />
+          <SidebarItem key={index} item={item} />
         ))}
       </ul>
-      <div className="sidebar-list-item logout">
-        <div>{<HiLogout style={{ color: 'white' }} />}</div>
+      <div className="sidebar-logout">
+        <div>{<HiLogout />}</div>
         <Link to={'/dang-xuat'}>Đăng xuất</Link>
       </div>
     </aside>
   );
 };
 
-const SubMenuList = ({ subItems, showSubMenu }) => (
-  <ul className={`submenu-list ${showSubMenu ? 'show' : ''}`}>
-    {subItems.map((subItem, index) => (
-      <li key={index}>
-        <Link to={subItem.path}>{subItem.subItemTitle}</Link>
-      </li>
-    ))}
-  </ul>
-);
-
-const SidebarListItem = ({ item }) => {
+const SidebarItem = ({ item }) => {
   const [showSubMenu, setShowSubMenu] = useState(false);
 
   const handleShowSubMenuClick = () => {
@@ -40,11 +30,21 @@ const SidebarListItem = ({ item }) => {
 
   return (
     <li>
-      <div className="sidebar-list-item" onClick={handleShowSubMenuClick}>
+      <div className="sidebar-item" onClick={handleShowSubMenuClick}>
         <div>{item.icon}</div>
         <div>{item.title}</div>
       </div>
-      <SubMenuList subItems={item.subItems} showSubMenu={showSubMenu} />
+      <SubMenu subItems={item.subItems} showSubMenu={showSubMenu} />
     </li>
   );
 };
+
+const SubMenu = ({ subItems, showSubMenu }) => (
+  <ul className={`submenu ${showSubMenu ? 'show' : ''}`}>
+    {subItems.map((subItem, index) => (
+      <li key={index}>
+        <Link to={subItem.path}>{subItem.subItemTitle}</Link>
+      </li>
+    ))}
+  </ul>
+);

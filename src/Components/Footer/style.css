@@ -1,6 +1,6 @@
-footer {
+.footer-wrapper {
   display: flex;
   align-items: center;
-  height: 5%;
   background-color: black;
+  height: 5vh;
 }
