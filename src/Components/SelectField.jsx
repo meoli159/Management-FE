@@ -4,7 +4,7 @@ export const SelectField = ({ label, name, options, onChange }) => {
       <label htmlFor={name} className="form-label">
         {label}
       </label>
-      <select className="form-control" id={name} onChange={onChange}>
+      <select className="form-control" name={name} onChange={onChange}>
         {options.map((option, index) => (
           <option key={index} value={option.value}>
             {option.label}

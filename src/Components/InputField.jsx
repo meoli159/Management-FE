@@ -7,7 +7,7 @@ export const InputField = ({ label, type, name, placeholder, onChange }) => {
       <input
         type={type}
         className="form-control"
-        id={name}
+        name={name}
         placeholder={placeholder}
         onChange={onChange}
       />

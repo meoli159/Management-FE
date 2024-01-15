@@ -3,7 +3,8 @@ import { InputField } from '../../../Components/InputField.jsx';
 import { SelectField } from '../../../Components/SelectField.jsx';
 import { createEmployee } from '../../../Apis/userApi.js'; // replace with your actual service file
 import './style.css';
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export function AddEmployee() {
   const [employee, setEmployee] = useState({
     name: '',
@@ -29,14 +30,20 @@ export function AddEmployee() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await createEmployee(employee);
-    console.log(result);
+    try {
+      const result = await createEmployee(employee);
+      console.log(result);
+      toast.success('Employee added successfully!');
+    } catch (error) {
+      console.error(error);
+      toast.error('An error occurred while adding the employee.');
+    }
   };
-
+  console.log(employee);
   return (
     <div className="add-employee-container">
+      <ToastContainer />
       <h1>Thêm nhân viên</h1>
-
       <form className="row g-3 m-0" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <InputField label="Tên nhân viên:" type="text" name="name" onChange={handleChange} />

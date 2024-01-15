@@ -20,6 +20,7 @@
 .table tr td {
   text-align: center;
   padding: 7px;
+  vertical-align: middle; /* Aligns text to the middle */
 }
 
 .table th {
