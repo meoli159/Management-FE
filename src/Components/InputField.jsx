@@ -1,4 +1,4 @@
-export const InputField = ({ label, type, name, placeholder, onChange }) => {
+export const InputField = ({ label, type, name, placeholder, onChange, ...rest }) => {
   return (
     <>
       <label htmlFor={name} className="form-label">
@@ -10,6 +10,7 @@ export const InputField = ({ label, type, name, placeholder, onChange }) => {
         name={name}
         placeholder={placeholder}
         onChange={onChange}
+        {...rest}
       />
     </>
   );

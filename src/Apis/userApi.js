@@ -4,6 +4,10 @@ export const fetchEmployees = async () => {
   const result = await axiosClient.get('/employees');
   return result;
 };
+export const fetchEmployeeById = async (id) => {
+  const result = await axiosClient.get(`/employees/${id}`);
+  return result;
+};
 
 export const createEmployee = async (employeeData) => {
   const result = await axiosClient.post('/employees', employeeData);
@@ -11,7 +15,7 @@ export const createEmployee = async (employeeData) => {
 };
 
 export const updateEmployee = async (id, updatedData) => {
-  const result = await axiosClient.patch(`/employees/${id}`, updatedData);
+  const result = await axiosClient.put(`/employees/${id}`, updatedData);
   return result;
 };
 

@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { InputField } from '../../../Components/InputField.jsx';
 import { SelectField } from '../../../Components/SelectField.jsx';
-import { createEmployee } from '../../../Apis/userApi.js';
+import { fetchEmployeeById, updateEmployee } from '../../../Apis/userApi.js';
 import './style.css';
 import { toast, ToastContainer } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 
 export function UpdateEmployee() {
+  const { id } = useParams();
+
   const [employee, setEmployee] = useState({
     name: '',
     phoneNumber: '',
@@ -20,7 +23,7 @@ export function UpdateEmployee() {
     overtime: '',
     leaveDate: '',
   });
-
+  console.log(id, employee);
   const handleChange = (e) => {
     setEmployee({
       ...employee,
@@ -31,20 +34,34 @@ export function UpdateEmployee() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // await createEmployee(employee);
+      await updateEmployee(id, employee);
       toast.success('Employee added successfully!');
     } catch (error) {
       console.error(error);
       toast.error('An error occurred while adding the employee.');
     }
   };
+  useEffect(() => {
+    const fetchAndSetEmployee = async () => {
+      const response = await fetchEmployeeById(id);
+      setEmployee(response.data);
+    };
+
+    fetchAndSetEmployee();
+  }, [id]);
 
   return (
     <div className="add-employee-container">
-      <h1>Chỉnh sửa thông tin nhân viên</h1>
+      <h1>Thêm nhân viên</h1>
       <form className="row g-3 m-0" onSubmit={handleSubmit}>
         <div className="col-md-6">
-          <InputField label="Tên nhân viên:" type="text" name="name" onChange={handleChange} />
+          <InputField
+            label="Tên nhân viên:"
+            type="text"
+            name="name"
+            onChange={handleChange}
+            value={employee.name}
+          />
         </div>
         <div className="col-md-6">
           <InputField
@@ -52,10 +69,17 @@ export function UpdateEmployee() {
             type="text"
             name="phoneNumber"
             onChange={handleChange}
+            value={employee.phoneNumber}
           />
         </div>
         <div className="col-md-6">
-          <InputField label="Email nhân viên:" type="email" name="email" onChange={handleChange} />
+          <InputField
+            label="Email nhân viên:"
+            type="email"
+            name="email"
+            onChange={handleChange}
+            value={employee.email}
+          />
         </div>
         <div className="col-md-6">
           <InputField
@@ -63,6 +87,7 @@ export function UpdateEmployee() {
             type="date"
             name="birthDate"
             onChange={handleChange}
+            value={employee.birthDate}
           />
         </div>
         <div className="col-md-6">
@@ -76,6 +101,7 @@ export function UpdateEmployee() {
               { label: 'Khác', value: 'other' },
             ]}
             onChange={handleChange}
+            value={employee.gender}
           />
         </div>
         <div className="col-md-6">
@@ -84,6 +110,7 @@ export function UpdateEmployee() {
             type="text"
             name="position"
             onChange={handleChange}
+            value={employee.position} // Display existing position
           />
         </div>
         <div className="col-md-6">
@@ -92,6 +119,7 @@ export function UpdateEmployee() {
             type="text"
             name="department"
             onChange={handleChange}
+            value={employee.department} // Display existing department
           />
         </div>
         <div className="col-md-6">
@@ -100,6 +128,7 @@ export function UpdateEmployee() {
             type="date"
             name="startDate"
             onChange={handleChange}
+            value={employee.startDate} // Display existing start date
           />
         </div>
         <div className="col-md-6">
@@ -108,6 +137,7 @@ export function UpdateEmployee() {
             type="date"
             name="endDate"
             onChange={handleChange}
+            value={employee.endDate} // Display existing end date
           />
         </div>
         <div className="col-md-6">
@@ -116,6 +146,7 @@ export function UpdateEmployee() {
             type="number"
             name="salary"
             onChange={handleChange}
+            value={employee.salary} // Display existing salary
           />
         </div>
         <div className="col-md-6">
@@ -124,6 +155,7 @@ export function UpdateEmployee() {
             type="number"
             name="overtime"
             onChange={handleChange}
+            value={employee.overtime} // Display existing overtime
           />
         </div>
         <div className="col-md-6">
@@ -132,6 +164,7 @@ export function UpdateEmployee() {
             type="date"
             name="leaveDate"
             onChange={handleChange}
+            value={employee.leaveDate} // Display existing leave date
           />
         </div>
         <div className="col-12">

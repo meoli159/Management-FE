@@ -1,0 +1,18 @@
+.add-employee-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-employee-container form {
+  display: flex;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.add-employee-container button {
+  font-weight: bold;
+  width: 100px;
+  height: 90;
+  padding: 10px;
+}

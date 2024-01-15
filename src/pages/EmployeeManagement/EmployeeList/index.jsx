@@ -4,12 +4,12 @@ import { removeEmployee, fetchEmployees } from '../../../Apis/userApi';
 import { toast, ToastContainer } from 'react-toastify';
 import { IoPersonAdd } from 'react-icons/io5';
 import { format } from 'date-fns';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './style.css';
 export function EmployeeList() {
   const [employees, setEmployees] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
-
+  const navigate = useNavigate();
   const deleteHandler = (id) => {
     removeEmployee(id)
       .then(() => {
@@ -24,6 +24,10 @@ export function EmployeeList() {
         console.error('Error deleting employee:', error);
         toast.error('An error occurred while deleting the employee.');
       });
+  };
+
+  const editHandler = (id) => {
+    navigate(`/quan-ly-nhan-vien/cap-nhat/${id}`);
   };
 
   useEffect(() => {
@@ -93,7 +97,9 @@ export function EmployeeList() {
                   <td>{employee.overtime}</td>
                   <td>{formatDate(employee.leaveDate)}</td>
                   <td>
-                    <button className="btn btn-warning">Sửa</button>
+                    <button className="btn btn-warning" onClick={() => editHandler(employee.id)}>
+                      Sửa
+                    </button>
                     <button className="btn btn-danger" onClick={() => deleteHandler(employee.id)}>
                       Xóa
                     </button>

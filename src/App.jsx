@@ -16,11 +16,11 @@ export default function App() {
             <Route path="quan-ly-nhan-vien">
               <Route path="danh-sach" element={<EmployeeList />} />
               <Route path="them-moi" element={<AddEmployee />} />
-              <Route path="cap-nhat" element={<UpdateEmployeeInfo />} />
+              <Route path="cap-nhat/:id" element={<UpdateEmployee />} />
             </Route>
             <Route path="tai-khoan">
               <Route path="thong-tin" element={<AccountInfo />} />
-              <Route path="cap-nhat" element={<UpdateAccount />} />
+              <Route path="cap-nhat/:id" element={<UpdateAccount />} />
               <Route path="doi-mat-khau" element={<ChangePassword />} />
             </Route>
           </Route>
@@ -66,9 +66,9 @@ const AddEmployee = lazy(() =>
     default: module.AddEmployee,
   }))
 );
-const UpdateEmployeeInfo = lazy(() =>
-  import('./pages/EmployeeManagement/UpdateEmployeeInfo').then((module) => ({
-    default: module.UpdateEmployeeInfo,
+const UpdateEmployee = lazy(() =>
+  import('./pages/EmployeeManagement/UpdateEmployee').then((module) => ({
+    default: module.UpdateEmployee,
   }))
 );
 

@@ -1,11 +1,11 @@
-.Login_wrapper {
+.login-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
 
-.Login {
+.login-bg {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,38 +13,29 @@
   width: 500px;
   height: 300px;
   padding: 20px;
+  border-radius: 5px;
   background-color: lightgray;
 }
 
-.Login h2 {
-  font-size: 2em; /* make title bigger */
-  font-weight: bold; /* make title bold */
-  margin-bottom: 20px; /* add some space below the title */
+.login-bg h2 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-.form-group {
-  margin: 10px;
+.form-input {
+  margin-bottom: 10px;
   display: flex;
-  justify-content: center; /* center the input fields and button */
+  justify-content: center;
 }
 
-.Input {
+.form-input input {
   width: 300px;
   height: 30px;
   padding: 20px;
+  border-radius: 5px;
   background-color: white;
+  border: 1px solid black;
   color: black;
-  border: none;
-  box-shadow: none;
-  margin-bottom: 10px; /* add some space below the input fields */
-}
-
-.login-btn {
-  margin: 10px;
-  width: 100px;
-  height: 40px;
-  background-color: green;
-  color: white;
-  border: none;
-  border-radius: 0;
+  margin-bottom: 10px;
 }
