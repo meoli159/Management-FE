@@ -5,13 +5,14 @@
 
 .add-employee-container form {
   display: flex;
-  flex-wrap: wrap;
+  border-radius: 5px;
   border: 1px solid black;
+  padding: 20px;
 }
 
-.add-employee-form button {
-  margin-top: 20px;
-  background-color: blue;
-  color: white;
-  padding: 5px;
+.add-employee-container button {
+  font-weight: bold;
+  width: 100px;
+  height: 90;
+  padding: 10px;
 }

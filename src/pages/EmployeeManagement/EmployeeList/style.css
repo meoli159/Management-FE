@@ -11,6 +11,20 @@
   border-radius: 5px;
 }
 
+.function-bar {
+  display: flex;
+  gap: 10px;
+}
+.function-bar a {
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 220px;
+  height: 100px;
+}
 .table {
   min-width: max-content;
   border-spacing: 0;
@@ -20,7 +34,7 @@
 .table tr td {
   text-align: center;
   padding: 7px;
-  vertical-align: middle; /* Aligns text to the middle */
+  vertical-align: middle;
 }
 
 .table th {

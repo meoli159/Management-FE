@@ -1,32 +1,52 @@
 import { useEffect, useState } from 'react';
 import { ExcelDownloadButton } from '../../../Components/ExcelDownloadButton';
 import { removeEmployee, fetchEmployees } from '../../../Apis/userApi';
+import { toast, ToastContainer } from 'react-toastify';
+import { IoPersonAdd } from 'react-icons/io5';
+import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 import './style.css';
 export function EmployeeList() {
   const [employees, setEmployees] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
+
   const deleteHandler = (id) => {
     removeEmployee(id)
       .then(() => {
-        console.log('deleted: ', id);
+        console.log('Deleted employee with ID:', id);
+        toast.success('Employee deleted successfully!');
         return fetchEmployees();
       })
       .then((response) => {
         setEmployees(response.data);
       })
-      .catch((error) => console.log('delete error: ', error));
+      .catch((error) => {
+        console.error('Error deleting employee:', error);
+        toast.error('An error occurred while deleting the employee.');
+      });
   };
 
   useEffect(() => {
-    fetchEmployees().then((r) => {
-      setEmployees(r.data);
-      setIsFetching(false);
-    });
+    fetchEmployees()
+      .then((response) => {
+        setEmployees(response.data);
+      })
+      .finally(() => {
+        setIsFetching(false);
+      });
   }, []);
 
+  const formatDate = (date) => format(new Date(date), 'dd/MM/yyyy');
+  const formatVND = (number) => new Intl.NumberFormat('vi-VN', { currency: 'VND' }).format(number);
   return (
     <div className="table-container">
-      <ExcelDownloadButton data={employees} filename={'danh-sach-nhan-vien.csv'} />
+      <div className="function-bar">
+        <Link to="/quan-ly-nhan-vien/them-moi" className="btn btn-primary">
+          <IoPersonAdd size={100} />
+          Thêm nhân viên
+        </Link>
+        <ExcelDownloadButton data={employees} filename={'danh-sach-nhan-vien.csv'} />
+      </div>
       <h1>Danh sách nhân viên</h1>
       <div className="table-wrapper border border-black">
         {isFetching ? (
@@ -63,15 +83,15 @@ export function EmployeeList() {
                   <td>{employee.name}</td>
                   <td>{employee.phoneNumber}</td>
                   <td>{employee.email}</td>
-                  <td>{employee.birthDate}</td>
+                  <td>{formatDate(employee.birthDate)}</td>
                   <td>{employee.gender}</td>
                   <td>{employee.position}</td>
                   <td>{employee.department}</td>
-                  <td>{employee.startDate}</td>
-                  <td>{employee.endDate}</td>
-                  <td>{employee.salary}</td>
+                  <td>{formatDate(employee.startDate)}</td>
+                  <td>{formatDate(employee.endDate)}</td>
+                  <td>{formatVND(employee.salary)} vnđ</td>
                   <td>{employee.overtime}</td>
-                  <td>{employee.leaveDate}</td>
+                  <td>{formatDate(employee.leaveDate)}</td>
                   <td>
                     <button className="btn btn-warning">Sửa</button>
                     <button className="btn btn-danger" onClick={() => deleteHandler(employee.id)}>
@@ -84,6 +104,7 @@ export function EmployeeList() {
           </table>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }
