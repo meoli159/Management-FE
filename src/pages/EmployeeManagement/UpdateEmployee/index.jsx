@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { InputField } from '../../../Components/InputField.jsx';
 import { SelectField } from '../../../Components/SelectField.jsx';
-import { fetchEmployeeById, updateEmployee } from '../../../Apis/userApi.js';
+import { fetchEmployeeById, updateEmployee } from '../../../Apis/employeeApi.js';
 import './style.css';
 import { toast, ToastContainer } from 'react-toastify';
 import { useParams } from 'react-router-dom';
@@ -35,16 +35,16 @@ export function UpdateEmployee() {
     e.preventDefault();
     try {
       await updateEmployee(id, employee);
-      toast.success('Employee added successfully!');
+      toast.success('Cập nhật thông tin nhân viên thành công!');
     } catch (error) {
       console.error(error);
-      toast.error('An error occurred while adding the employee.');
+      toast.error('Cập nhật thông tin nhân viên không thành công.');
     }
   };
   useEffect(() => {
     const fetchAndSetEmployee = async () => {
-      const response = await fetchEmployeeById(id);
-      setEmployee(response.data);
+      const res = await fetchEmployeeById(id);
+      setEmployee(res);
     };
 
     fetchAndSetEmployee();
@@ -52,7 +52,7 @@ export function UpdateEmployee() {
 
   return (
     <div className="add-employee-container">
-      <h1>Thêm nhân viên</h1>
+      <h1>Chỉnh sửa thông tin nhân viên</h1>
       <form className="row g-3 m-0" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <InputField
@@ -169,7 +169,7 @@ export function UpdateEmployee() {
         </div>
         <div className="col-12">
           <button type="submit" className="btn btn-primary">
-            Thêm
+            Cập nhật
           </button>
         </div>
       </form>

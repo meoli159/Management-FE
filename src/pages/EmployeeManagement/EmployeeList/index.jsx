@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ExcelDownloadButton } from '../../../Components/ExcelDownloadButton';
-import { removeEmployee, fetchEmployees } from '../../../Apis/userApi';
+import { removeEmployee, fetchEmployees } from '../../../Apis/employeeApi.js';
 import { toast, ToastContainer } from 'react-toastify';
 import { IoPersonAdd } from 'react-icons/io5';
 import { format } from 'date-fns';
@@ -17,8 +17,8 @@ export function EmployeeList() {
         toast.success('Employee deleted successfully!');
         return fetchEmployees();
       })
-      .then((response) => {
-        setEmployees(response.data);
+      .then((res) => {
+        setEmployees(res);
       })
       .catch((error) => {
         console.error('Error deleting employee:', error);
@@ -32,8 +32,8 @@ export function EmployeeList() {
 
   useEffect(() => {
     fetchEmployees()
-      .then((response) => {
-        setEmployees(response.data);
+      .then((res) => {
+        setEmployees(res);
       })
       .finally(() => {
         setIsFetching(false);
