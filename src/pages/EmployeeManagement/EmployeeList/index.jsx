@@ -14,7 +14,7 @@ export function EmployeeList() {
     removeEmployee(id)
       .then(() => {
         console.log('Deleted employee with ID:', id);
-        toast.success('Employee deleted successfully!');
+        toast.error('Employee deleted successfully!');
         return fetchEmployees();
       })
       .then((res) => {

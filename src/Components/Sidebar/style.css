@@ -1,3 +1,4 @@
+/* Sidebar styles */
 .sidebar-container {
   display: flex;
   height: 100%;
@@ -13,7 +14,8 @@
   height: auto;
 }
 
-.sidebar-item,
+/* Sidebar item styles */
+
 .sidebar-logout {
   display: flex;
   flex-direction: row;
@@ -24,11 +26,22 @@
   transition: 0.3s;
   font-weight: bold;
 }
-
+.sidebar-item {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: space-between;
+  padding: 10px 5px;
+  font-size: 16px;
+  color: white;
+  transition: 0.3s;
+  font-weight: bold;
+}
 .sidebar-item div,
 .sidebar-logout div {
   display: flex;
   align-items: center;
+  gap: 1rem;
   margin-right: 10px;
   color: white;
 }
@@ -38,32 +51,32 @@
   background-color: #555;
 }
 
+/* Submenu styles */
 .submenu {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
-  background-color: #808080; /* gray background */
-  color: white; /* text color */
-  text-decoration: none; /* remove underline */
-  list-style-type: circle; /* remove list decoration */
+  background-color: #808080;
+  color: white;
+  text-decoration: none;
+  list-style-type: circle;
 }
 
 .submenu li {
-  margin: 10px 0; /* adjust as needed */
+  margin: 10px 0;
 }
 
 .submenu.show {
   max-height: 500px;
 }
 
-/* Darker color for non-clicked text */
+/* Text color styles */
 .sidebar-item,
 .submenu a {
   text-decoration: none;
-  color: #3b4249; /* adjust as needed */
+  color: #3b4249;
 }
 
-/* White color for clicked text */
 .sidebar-item:active,
 .sidebar-item:focus,
 .submenu a:active,
@@ -72,8 +85,15 @@
   color: white;
 }
 
-.sidebar-logout a {
-  display: flex;
-  text-decoration: none;
-  color: red;
+/* Logout styles */
+.sidebar-logout {
+  cursor: pointer;
+}
+
+.sidebar-logout:hover {
+  background-color: #555;
+}
+
+.sidebar-logout div {
+  color: #ff4500;
 }

@@ -3,24 +3,39 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  background-color: beige;
 }
 
 .login-bg {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   width: 500px;
-  height: 300px;
+  height: fit-content;
   padding: 20px;
   border-radius: 5px;
-  background-color: lightgray;
+  /* background-color: rgb(221, 221, 221); */
 }
-
-.login-bg h2 {
-  font-size: 2em;
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+}
+.form-wrapper form {
+  display: flex;
+  flex-direction: column;
+}
+.btn {
   font-weight: bold;
-  margin-bottom: 20px;
+}
+.login-bg h1 {
+  font-size: 5em;
+  font-weight: bold;
+  margin: 20px;
+  font-family: 'Pacifico', cursive;
 }
 
 .form-input {
@@ -34,8 +49,6 @@
   height: 30px;
   padding: 20px;
   border-radius: 5px;
-  background-color: white;
   border: 1px solid black;
-  color: black;
   margin-bottom: 10px;
 }

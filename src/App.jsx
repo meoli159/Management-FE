@@ -1,27 +1,37 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+const AdminRoute = () => {
+  const isAuth = useSelector((state) => state.auth.isAuth === true);
+  const isAdmin = useSelector((state) => state.auth.user?.roles.includes('admin'));
+
+  return isAuth && isAdmin ? <Outlet /> : <Navigate to="dang-nhap" />;
+};
 
 export default function App() {
   return (
     <BrowserRouter>
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
-          <Route element={<AdminLayout />}>
-            <Route path="/" element={<Navigate to="/tong-quan/xem" />} />
-            <Route path="tong-quan">
-              <Route path="xem" element={<Overview />} />
-              <Route path="bao-cao" element={<ReportOverview />} />
-              <Route path="thong-ke" element={<StatisticsOverview />} />
-            </Route>
-            <Route path="quan-ly-nhan-vien">
-              <Route path="danh-sach" element={<EmployeeList />} />
-              <Route path="them-moi" element={<AddEmployee />} />
-              <Route path="cap-nhat/:id" element={<UpdateEmployee />} />
-            </Route>
-            <Route path="tai-khoan">
-              <Route path="thong-tin" element={<AccountInfo />} />
-              <Route path="cap-nhat/:id" element={<UpdateAccount />} />
-              <Route path="doi-mat-khau" element={<ChangePassword />} />
+          <Route element={<AdminRoute />}>
+            <Route element={<AdminLayout />}>
+              <Route path="/" element={<Navigate to="/tong-quan/xem" />} />
+              <Route path="tong-quan">
+                <Route path="xem" element={<Overview />} />
+                <Route path="bao-cao" element={<ReportOverview />} />
+                <Route path="thong-ke" element={<StatisticsOverview />} />
+              </Route>
+              <Route path="quan-ly-nhan-vien">
+                <Route path="danh-sach" element={<EmployeeList />} />
+                <Route path="them-moi" element={<AddEmployee />} />
+                <Route path="cap-nhat/:id" element={<UpdateEmployee />} />
+              </Route>
+              <Route path="tai-khoan">
+                <Route path="thong-tin" element={<AccountInfo />} />
+                <Route path="cap-nhat/:id" element={<UpdateAccount />} />
+                <Route path="doi-mat-khau" element={<ChangePassword />} />
+              </Route>
             </Route>
           </Route>
           <Route path="dang-nhap" element={<Login />} />

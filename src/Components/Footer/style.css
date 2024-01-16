@@ -1,6 +1,17 @@
 .footer-wrapper {
-  display: flex;
-  align-items: center;
   background-color: black;
   height: 5vh;
+}
+
+.footer-wrapper footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  /* padding: 10px; */
+}
+
+.footer-wrapper footer p {
+  color: white;
+  margin: 0;
 }

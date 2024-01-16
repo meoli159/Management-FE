@@ -1,7 +1,11 @@
-import { axiosClient } from './AxiosInstance';
+import { axiosAuth } from './AxiosInstance';
 
 export const login = async (data) => {
-  const result = await axiosClient.get('/auth/login', data);
+  const result = await axiosAuth.post('api/v1/auth/login', data);
+  return result;
+};
+export const logout = async () => {
+  const result = await axiosAuth.post('api/v1/auth/logout');
   return result;
 };
 // export const fetchEmployeeById = async (id) => {
