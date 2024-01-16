@@ -37,13 +37,16 @@
   transition: 0.3s;
   font-weight: bold;
 }
-.sidebar-item div,
+.sidebar-item div {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  color: white;
+}
 .sidebar-logout div {
   display: flex;
   align-items: center;
-  gap: 1rem;
   margin-right: 10px;
-  color: white;
 }
 
 .sidebar-item:hover {
