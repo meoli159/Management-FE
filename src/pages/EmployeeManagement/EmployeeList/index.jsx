@@ -40,7 +40,7 @@ export function EmployeeList() {
       });
   }, []);
 
-  const formatDate = (date) => format(Date(date), 'dd/MM/yyyy');
+  const formatDate = (date) => format(new Date(date), 'dd/MM/yyyy');
   const formatVND = (number) => new Intl.NumberFormat('vi-VN', { currency: 'VND' }).format(number);
   return (
     <div className="table-container">

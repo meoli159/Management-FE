@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 
 export function UpdateEmployee() {
   const { id } = useParams();
-
+  const [isLoading, setIsLoading] = useState(false);
   const [employee, setEmployee] = useState({
     name: '',
     phoneNumber: '',
@@ -33,12 +33,31 @@ export function UpdateEmployee() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    e.currentTarget.classList.add('was-validated');
+
+    if (!e.currentTarget.checkValidity()) {
+      return;
+    }
+    const toastId = toast.loading('Đang cập nhật nhân viên...');
+    setIsLoading(true);
     try {
       await updateEmployee(id, employee);
-      toast.success('Cập nhật thông tin nhân viên thành công!');
+      toast.update(toastId, {
+        render: 'Đã cập nhật  nhân viên thành công!',
+        type: 'success',
+        isLoading: false,
+        autoClose: true,
+        closeOnClick: true,
+      });
     } catch (error) {
-      console.error(error);
-      toast.error('Cập nhật thông tin nhân viên không thành công.');
+      setIsLoading(false);
+      toast.update(toastId, {
+        render: 'Đã xảy ra lỗi khi cập nhật nhân viên.',
+        type: 'error',
+        isLoading: false,
+        autoClose: true,
+        closeOnClick: true,
+      });
     }
   };
   useEffect(() => {
@@ -46,14 +65,13 @@ export function UpdateEmployee() {
       const res = await fetchEmployeeById(id);
       setEmployee(res);
     };
-
     fetchAndSetEmployee();
   }, [id]);
 
   return (
     <div className="add-employee-container">
       <h1>Chỉnh sửa thông tin nhân viên</h1>
-      <form className="row g-3 m-0" onSubmit={handleSubmit}>
+      <form className="row g-3 m-0 " onSubmit={handleSubmit} noValidate>
         <div className="col-md-6">
           <InputField
             label="Tên nhân viên:"
@@ -61,7 +79,9 @@ export function UpdateEmployee() {
             name="name"
             onChange={handleChange}
             value={employee.name}
+            required
           />
+          <div className="invalid-feedback">Vui lòng điền tên nhân viên.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -70,7 +90,9 @@ export function UpdateEmployee() {
             name="phoneNumber"
             onChange={handleChange}
             value={employee.phoneNumber}
+            required
           />
+          <div className="invalid-feedback">Vui lòng điền số điện thoại.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -79,7 +101,9 @@ export function UpdateEmployee() {
             name="email"
             onChange={handleChange}
             value={employee.email}
+            required
           />
+          <div className="invalid-feedback">Vui lòng điền email.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -88,7 +112,9 @@ export function UpdateEmployee() {
             name="birthDate"
             onChange={handleChange}
             value={employee.birthDate}
+            required
           />
+          <div className="invalid-feedback">Vui lòng chọn ngày sinh.</div>
         </div>
         <div className="col-md-6">
           <SelectField
@@ -102,7 +128,9 @@ export function UpdateEmployee() {
             ]}
             onChange={handleChange}
             value={employee.gender}
+            required
           />
+          <div className="invalid-feedback">Vui lòng chọn giới tính.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -110,8 +138,10 @@ export function UpdateEmployee() {
             type="text"
             name="position"
             onChange={handleChange}
-            value={employee.position} // Display existing position
+            value={employee.position}
+            required
           />
+          <div className="invalid-feedback">Vui lòng điền chức vụ.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -119,8 +149,10 @@ export function UpdateEmployee() {
             type="text"
             name="department"
             onChange={handleChange}
-            value={employee.department} // Display existing department
+            value={employee.department}
+            required
           />
+          <div className="invalid-feedback">Vui lòng điền bộ phận.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -128,8 +160,10 @@ export function UpdateEmployee() {
             type="date"
             name="startDate"
             onChange={handleChange}
-            value={employee.startDate} // Display existing start date
+            value={employee.startDate}
+            required
           />
+          <div className="invalid-feedback">Vui lòng chọn ngày bắt đầu làm việc.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -137,7 +171,7 @@ export function UpdateEmployee() {
             type="date"
             name="endDate"
             onChange={handleChange}
-            value={employee.endDate} // Display existing end date
+            value={employee.endDate}
           />
         </div>
         <div className="col-md-6">
@@ -146,7 +180,7 @@ export function UpdateEmployee() {
             type="number"
             name="salary"
             onChange={handleChange}
-            value={employee.salary} // Display existing salary
+            value={employee.salary}
           />
         </div>
         <div className="col-md-6">
@@ -155,7 +189,7 @@ export function UpdateEmployee() {
             type="number"
             name="overtime"
             onChange={handleChange}
-            value={employee.overtime} // Display existing overtime
+            value={employee.overtime}
           />
         </div>
         <div className="col-md-6">
@@ -164,7 +198,7 @@ export function UpdateEmployee() {
             type="date"
             name="leaveDate"
             onChange={handleChange}
-            value={employee.leaveDate} // Display existing leave date
+            value={employee.leaveDate}
           />
         </div>
         <div className="col-12">

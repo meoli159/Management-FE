@@ -16,7 +16,6 @@ export const sidebarData = [
     icon: <HiMiniUserGroup />,
     subItems: [
       { subItemTitle: 'Thêm nhân viên mới', path: '/quan-ly-nhan-vien/them-moi' },
-      { subItemTitle: 'Cập nhật thông tin nhân viên', path: '/quan-ly-nhan-vien/cap-nhat' },
       { subItemTitle: 'Danh sách nhân viên', path: '/quan-ly-nhan-vien/danh-sach' },
     ],
   },

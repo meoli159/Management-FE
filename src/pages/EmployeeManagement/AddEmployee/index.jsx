@@ -6,6 +6,7 @@ import './style.css';
 import { toast, ToastContainer } from 'react-toastify';
 
 export function AddEmployee() {
+  const [isLoading, setIsLoading] = useState(false);
   const [employee, setEmployee] = useState({
     name: '',
     phoneNumber: '',
@@ -30,21 +31,49 @@ export function AddEmployee() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    e.currentTarget.classList.add('was-validated');
+
+    if (!e.currentTarget.checkValidity()) {
+      return;
+    }
+
+    const toastId = toast.loading('Đang thêm nhân viên...');
+    setIsLoading(true);
     try {
       await createEmployee(employee);
-      toast.success('Employee added successfully!');
+      setIsLoading(false);
+      toast.update(toastId, {
+        render: 'Đã thêm nhân viên thành công!',
+        type: 'success',
+        isLoading: false,
+        autoClose: true,
+        closeOnClick: true,
+      });
     } catch (error) {
-      console.error(error);
-      toast.error('An error occurred while adding the employee.');
+      setIsLoading(false);
+      toast.update(toastId, {
+        render: 'Đã xảy ra lỗi khi thêm nhân viên.',
+        type: 'error',
+        isLoading: false,
+        autoClose: true,
+        closeOnClick: true,
+      });
     }
   };
 
   return (
     <div className="add-employee-container">
       <h1>Thêm nhân viên</h1>
-      <form className="row g-3 m-0" onSubmit={handleSubmit}>
+      <form className="row g-3 m-0 needs-validation" onSubmit={handleSubmit} noValidate>
         <div className="col-md-6">
-          <InputField label="Tên nhân viên:" type="text" name="name" onChange={handleChange} />
+          <InputField
+            label="Tên nhân viên:"
+            type="text"
+            name="name"
+            onChange={handleChange}
+            required
+          />
+          <div className="invalid-feedback">Vui lòng điền tên nhân viên.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -52,10 +81,19 @@ export function AddEmployee() {
             type="text"
             name="phoneNumber"
             onChange={handleChange}
+            required
           />
+          <div className="invalid-feedback">Vui lòng điền số điện thoại.</div>
         </div>
         <div className="col-md-6">
-          <InputField label="Email nhân viên:" type="email" name="email" onChange={handleChange} />
+          <InputField
+            label="Email nhân viên:"
+            type="email"
+            name="email"
+            onChange={handleChange}
+            required
+          />
+          <div className="invalid-feedback">Vui lòng điền email.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -63,7 +101,9 @@ export function AddEmployee() {
             type="date"
             name="birthDate"
             onChange={handleChange}
+            required
           />
+          <div className="invalid-feedback">Vui lòng chọn ngày sinh.</div>
         </div>
         <div className="col-md-6">
           <SelectField
@@ -76,7 +116,9 @@ export function AddEmployee() {
               { label: 'Khác', value: 'other' },
             ]}
             onChange={handleChange}
+            required
           />
+          <div className="invalid-feedback">Vui lòng chọn giới tính.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -84,7 +126,9 @@ export function AddEmployee() {
             type="text"
             name="position"
             onChange={handleChange}
+            required
           />
+          <div className="invalid-feedback">Vui lòng điền chức vụ.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -92,7 +136,9 @@ export function AddEmployee() {
             type="text"
             name="department"
             onChange={handleChange}
+            required
           />
+          <div className="invalid-feedback">Vui lòng điền bộ phận.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -100,7 +146,9 @@ export function AddEmployee() {
             type="date"
             name="startDate"
             onChange={handleChange}
+            required
           />
+          <div className="invalid-feedback">Vui lòng chọn ngày bắt đầu làm việc.</div>
         </div>
         <div className="col-md-6">
           <InputField
@@ -136,7 +184,12 @@ export function AddEmployee() {
         </div>
         <div className="col-12">
           <button type="submit" className="btn btn-primary">
-            Thêm
+            {isLoading && (
+              <div className="spinner-border spinner-border-sm" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            )}
+            &nbsp;Thêm
           </button>
         </div>
       </form>
