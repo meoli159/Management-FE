@@ -10,7 +10,6 @@ import { ToastContainer, toast } from 'react-toastify';
 export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const validateForm = () => email.length > 0 && password.length > 6;
