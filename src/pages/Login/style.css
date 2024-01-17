@@ -28,6 +28,10 @@
   display: flex;
   flex-direction: column;
 }
+
+.form-wrapper form button div {
+  margin-right: 5px;
+}
 .btn {
   font-weight: bold;
 }

@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const validateForm = () => email.length > 0 && password.length > 6;
@@ -19,16 +20,20 @@ export function Login() {
     if (validateForm()) {
       const data = { email: email, password: password };
       try {
+        setIsLoading(true);
         const res = await login(data);
         const isAdmin = res.data.roles.includes('admin');
         if (!isAdmin) {
+          setIsLoading(false);
           dispatch(logOutSuccess());
           return toast.error('Vui lòng đăng nhập tài khoản admin');
         }
+        setIsLoading(false);
         dispatch(loginSuccess(res));
         navigate('/');
       } catch (error) {
         console.error('Login failed:', error);
+        setIsLoading(false);
         toast.error('Đăng nhập thất bại. Vui lòng kiểm tra lại password hoặc email');
       }
     }
@@ -57,6 +62,11 @@ export function Login() {
               />
             </div>
             <button className="btn btn-primary" type="submit" disabled={!validateForm()}>
+              {isLoading && (
+                <div className="spinner-border spinner-border-sm" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              )}
               Đăng nhập
             </button>
           </form>
