@@ -10,15 +10,17 @@ const authSlice = createSlice({
       roles: [],
     },
     isAuth: false,
-    token: null,
+    // token: null,
   },
   reducers: {
     logOutSuccess: (state) => {
       state.user = null;
+      // state.token = null;
       state.isAuth = false;
     },
     loginSuccess: (state, action) => {
       state.user = action.payload.data;
+      // state.token = action.payload.access_token;
       state.isAuth = true;
     },
   },

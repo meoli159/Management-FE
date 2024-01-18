@@ -77,8 +77,8 @@ export function UpdateEmployee() {
             label="Tên nhân viên:"
             type="text"
             name="name"
+            id="name"
             onChange={handleChange}
-            value={employee.name}
             required
           />
           <div className="invalid-feedback">Vui lòng điền tên nhân viên.</div>
@@ -88,8 +88,8 @@ export function UpdateEmployee() {
             label="Số điện thoại nhân viên:"
             type="text"
             name="phoneNumber"
+            id="phoneNumber"
             onChange={handleChange}
-            value={employee.phoneNumber}
             required
           />
           <div className="invalid-feedback">Vui lòng điền số điện thoại.</div>
@@ -99,8 +99,8 @@ export function UpdateEmployee() {
             label="Email nhân viên:"
             type="email"
             name="email"
+            id="email"
             onChange={handleChange}
-            value={employee.email}
             required
           />
           <div className="invalid-feedback">Vui lòng điền email.</div>
@@ -110,8 +110,8 @@ export function UpdateEmployee() {
             label="Ngày sinh nhân viên:"
             type="date"
             name="birthDate"
+            id="birthDate"
             onChange={handleChange}
-            value={employee.birthDate}
             required
           />
           <div className="invalid-feedback">Vui lòng chọn ngày sinh.</div>
@@ -120,6 +120,7 @@ export function UpdateEmployee() {
           <SelectField
             label="Giới tính nhân viên:"
             name="gender"
+            id="gender"
             options={[
               { label: 'Chọn giới tính', value: '' },
               { label: 'Nam', value: 'male' },
@@ -127,7 +128,6 @@ export function UpdateEmployee() {
               { label: 'Khác', value: 'other' },
             ]}
             onChange={handleChange}
-            value={employee.gender}
             required
           />
           <div className="invalid-feedback">Vui lòng chọn giới tính.</div>
@@ -137,8 +137,8 @@ export function UpdateEmployee() {
             label="Chức vụ nhân viên:"
             type="text"
             name="position"
+            id="position"
             onChange={handleChange}
-            value={employee.position}
             required
           />
           <div className="invalid-feedback">Vui lòng điền chức vụ.</div>
@@ -148,8 +148,8 @@ export function UpdateEmployee() {
             label="Bộ phận nhân viên:"
             type="text"
             name="department"
+            id="department"
             onChange={handleChange}
-            value={employee.department}
             required
           />
           <div className="invalid-feedback">Vui lòng điền bộ phận.</div>
@@ -159,8 +159,8 @@ export function UpdateEmployee() {
             label="Ngày bắt đầu làm việc:"
             type="date"
             name="startDate"
+            id="startDate"
             onChange={handleChange}
-            value={employee.startDate}
             required
           />
           <div className="invalid-feedback">Vui lòng chọn ngày bắt đầu làm việc.</div>
@@ -170,8 +170,8 @@ export function UpdateEmployee() {
             label="Ngày kết thúc làm việc:"
             type="date"
             name="endDate"
+            id="endDate"
             onChange={handleChange}
-            value={employee.endDate}
           />
         </div>
         <div className="col-md-6">
@@ -179,8 +179,8 @@ export function UpdateEmployee() {
             label="Mức lương của nhân viên:"
             type="number"
             name="salary"
+            id="salary"
             onChange={handleChange}
-            value={employee.salary}
           />
         </div>
         <div className="col-md-6">
@@ -188,8 +188,8 @@ export function UpdateEmployee() {
             label="Thời gian làm thêm của nhân viên:"
             type="number"
             name="overtime"
+            id="overtime"
             onChange={handleChange}
-            value={employee.overtime}
           />
         </div>
         <div className="col-md-6">
@@ -197,10 +197,11 @@ export function UpdateEmployee() {
             label="Ngày nghỉ phép của nhân viên:"
             type="date"
             name="leaveDate"
+            id="leaveDate"
             onChange={handleChange}
-            value={employee.leaveDate}
           />
         </div>
+
         <div className="col-12">
           <button type="submit" className="btn btn-primary">
             Cập nhật

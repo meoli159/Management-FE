@@ -9,13 +9,10 @@
 .login-bg {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   width: 500px;
-  height: fit-content;
   padding: 20px;
   border-radius: 5px;
-  /* background-color: rgb(221, 221, 221); */
 }
 .form-wrapper {
   display: flex;

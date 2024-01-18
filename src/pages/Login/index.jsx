@@ -7,6 +7,7 @@ import { logOutSuccess, loginSuccess } from '../../redux/auth/authSlice.js';
 
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+
 export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,25 +18,24 @@ export function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      const data = { email: email, password: password };
-      try {
-        setIsLoading(true);
-        const res = await login(data);
-        const isAdmin = res.data.roles.includes('admin');
-        if (!isAdmin) {
-          setIsLoading(false);
-          dispatch(logOutSuccess());
-          return toast.error('Vui lòng đăng nhập tài khoản admin');
-        }
+    if (!validateForm()) return;
+    const data = { email: email, password: password };
+    try {
+      setIsLoading(true);
+      const res = await login(data);
+      const isAdmin = res.data.roles.includes('admin');
+      if (!isAdmin) {
         setIsLoading(false);
-        dispatch(loginSuccess(res));
-        navigate('/');
-      } catch (error) {
-        console.error('Login failed:', error);
-        setIsLoading(false);
-        toast.error('Đăng nhập thất bại. Vui lòng kiểm tra lại password hoặc email');
+        dispatch(logOutSuccess());
+        return toast.error('Vui lòng đăng nhập tài khoản admin');
       }
+      setIsLoading(false);
+      dispatch(loginSuccess(res));
+      navigate('/');
+    } catch (error) {
+      console.error('Login failed:', error);
+      setIsLoading(false);
+      toast.error('Đăng nhập thất bại. Vui lòng kiểm tra lại password hoặc email');
     }
   };
 
@@ -49,6 +49,7 @@ export function Login() {
               <InputField
                 type="email"
                 value={email}
+                id="email"
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
               />
@@ -57,6 +58,7 @@ export function Login() {
               <InputField
                 type="password"
                 value={password}
+                id="password"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
               />

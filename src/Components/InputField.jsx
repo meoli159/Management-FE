@@ -8,6 +8,7 @@ export const InputField = ({ label, type, name, placeholder, onChange, ...rest }
         type={type}
         className="form-control"
         name={name}
+        id={name}
         placeholder={placeholder}
         onChange={onChange}
         {...rest}

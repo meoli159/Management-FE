@@ -70,6 +70,7 @@ export function AddEmployee() {
             label="Tên nhân viên:"
             type="text"
             name="name"
+            id="name"
             onChange={handleChange}
             required
           />
@@ -80,6 +81,7 @@ export function AddEmployee() {
             label="Số điện thoại nhân viên:"
             type="text"
             name="phoneNumber"
+            id="phoneNumber"
             onChange={handleChange}
             required
           />
@@ -90,6 +92,7 @@ export function AddEmployee() {
             label="Email nhân viên:"
             type="email"
             name="email"
+            id="email"
             onChange={handleChange}
             required
           />
@@ -100,6 +103,7 @@ export function AddEmployee() {
             label="Ngày sinh nhân viên:"
             type="date"
             name="birthDate"
+            id="birthDate"
             onChange={handleChange}
             required
           />
@@ -109,6 +113,7 @@ export function AddEmployee() {
           <SelectField
             label="Giới tính nhân viên:"
             name="gender"
+            id="gender"
             options={[
               { label: 'Chọn giới tính', value: '' },
               { label: 'Nam', value: 'male' },
@@ -125,6 +130,7 @@ export function AddEmployee() {
             label="Chức vụ nhân viên:"
             type="text"
             name="position"
+            id="position"
             onChange={handleChange}
             required
           />
@@ -135,6 +141,7 @@ export function AddEmployee() {
             label="Bộ phận nhân viên:"
             type="text"
             name="department"
+            id="department"
             onChange={handleChange}
             required
           />
@@ -145,6 +152,7 @@ export function AddEmployee() {
             label="Ngày bắt đầu làm việc:"
             type="date"
             name="startDate"
+            id="startDate"
             onChange={handleChange}
             required
           />
@@ -155,6 +163,7 @@ export function AddEmployee() {
             label="Ngày kết thúc làm việc:"
             type="date"
             name="endDate"
+            id="endDate"
             onChange={handleChange}
           />
         </div>
@@ -163,6 +172,7 @@ export function AddEmployee() {
             label="Mức lương của nhân viên:"
             type="number"
             name="salary"
+            id="salary"
             onChange={handleChange}
           />
         </div>
@@ -171,6 +181,7 @@ export function AddEmployee() {
             label="Thời gian làm thêm của nhân viên:"
             type="number"
             name="overtime"
+            id="overtime"
             onChange={handleChange}
           />
         </div>
@@ -179,9 +190,11 @@ export function AddEmployee() {
             label="Ngày nghỉ phép của nhân viên:"
             type="date"
             name="leaveDate"
+            id="leaveDate"
             onChange={handleChange}
           />
         </div>
+
         <div className="col-12">
           <button type="submit" className="btn btn-primary">
             {isLoading && (

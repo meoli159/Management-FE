@@ -10,6 +10,8 @@ const axiosAuth = axios.create({ baseURL: AUTH_API_URL });
 //   config.withCredentials = true;
 //   return config;
 // });
+axiosAuth.defaults.withCredentials = true;
+
 axiosClient.interceptors.response.use(
   function (response) {
     return response.data ? response.data : { statusCode: response.status };
